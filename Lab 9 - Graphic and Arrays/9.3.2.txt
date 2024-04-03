@@ -1,0 +1,23 @@
+      MOV R0,#arrayData 
+      MOV R1,#4         // index       
+      MOV R2,#0         //sum 
+arrayloop: 
+      LDR R3, [R0+R1] 
+      ADD R2,R2,R3 
+      ADD R1,R1,#4 
+      CMP R1,#arrayLength 
+      BLT arrayloop 
+      STR R2,.WriteUnsignedNum 
+      HALT 
+      .ALIGN 256 
+arrayLength: 10 
+arrayData: 9 
+      8
+      7 
+      6 
+      5 
+      4 
+      3 
+      2 
+      1 
+      0

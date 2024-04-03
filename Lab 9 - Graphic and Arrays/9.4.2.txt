@@ -1,0 +1,21 @@
+      MOV R0,#arrayData1 
+      MOV R1,#36        // index 
+arrayloop: 
+      LDR R3, [R0+R1]   //pointer to the array       
+      STR R3,.WriteUnsignedNum // write what's inside the array in the display       
+      SUB R1,R1,#4      // subtract the index of the array by 4 bytes       
+      CMP R1, #0        // R1 - 0       
+      BNE arrayloop 
+      HALT 
+      .ALIGN 256 
+arrayLength1: 10
+arrayData1: 9 
+      8 
+      7
+      6 
+      5 
+      4 
+      3 
+      2 
+      1 
+      0

@@ -1,0 +1,83 @@
+      MOV R1, #.PixelScreen 
+      MOV R2, #.red 
+      MOV R3, #0 
+      MOV R5, #0 
+loop1: 
+      ADD R4, R1, R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3, #80 
+      BLT loop1 
+      MOV R3, #0 
+      MOV R3, #256 
+loop2: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3, #336 
+      BLT loop2 
+      MOV R3,#0 
+      MOV R3,#512 
+loop3: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3, #592 
+      BLT loop3 
+      MOV R3,#0 
+      MOV R3,#768 
+loop4: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#848 
+      BLT loop4 
+      MOV R3,#0 
+      MOV R3,#1024 
+loop5: 
+      ADD R4,R1,R3 
+      STR R2, [R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#1104 
+      BLT loop5 
+      MOV R3,#0 
+      MOV R3,#1280 
+loop6: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#1360 
+      BLT loop6 
+      MOV R3,#0 
+      MOV R3,#1536 
+loop7: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#1616 
+      BLT loop7 
+      MOV R3,#0 
+      MOV R3,#1792 
+loop8: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#1872 
+      BLT loop8
+      MOV R3,#0 
+      MOV R3,#2048 
+loop9: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#2128 
+      BLT loop9 
+      MOV R3,#0 
+      MOV R3,#2304 
+loop10: 
+      ADD R4,R1,R3 
+      STR R2,[R4+R5] 
+      ADD R3,R3,#4 
+      CMP R3,#2384 
+      BLT loop10 
+      HALT

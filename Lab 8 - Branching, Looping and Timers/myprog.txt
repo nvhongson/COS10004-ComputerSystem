@@ -1,0 +1,58 @@
+      MOV R0, #15 
+      STR R0, .WriteUnsignedNum 
+      MOV R1, #msg1 
+      STR R1, .WriteString
+Loop: 
+      MOV R1, #msg2 
+      STR R1, .WriteString 
+      LDR R2, .InputNum
+start: 
+      CMP R2, #0 
+      BGT else1         // checking if R2 > 0        
+      B invalid1
+else1:
+      CMP R2, #4 
+      BLT cont1         // checking if R2 < 4       
+      B invalid1
+invalid1: 
+      MOV R1, #msg3
+      STR R1, .WriteString 
+      LDR R2, .InputNum 
+      B start
+cont1: 
+      CMP R0, R2 
+      BLT invalid1 
+      B cont2
+cont2: 
+      SUB R0, R0, R2 
+      STR R0, .WriteUnsignedNum 
+      MOV R1, #msg1 
+      STR R1, .WriteString 
+      MOV R1, #msg5 
+      STR R1, .WriteString 
+      B select
+select: 
+      LDR R4, .Random 
+      LSL R4, R4, #30 
+      LSR R4, R4, #30 
+      CMP R4, #0 
+      BGT conti 
+      B select
+conti:
+      CMP R4, R0 
+      BGT select 
+      B continue
+continue: 
+      SUB R0, R0, R4 
+      STR R0, .WriteUnsignedNum
+      MOV R1, #msg1 
+      STR R1, .WriteString 
+      MOV R1, #msg4 
+      STR R1, .WriteString 
+      B Loop 
+      HALT
+msg1: .ASCIZ "remaining\n"
+msg2: .ASCIZ "How many do you want to remove (1-3)?\n"
+msg3: .ASCIZ "Please input a valid number!\n"
+msg4: .ASCIZ "It's your turn!\n"
+msg5: .ASCIZ "It's computer's turn!\n"

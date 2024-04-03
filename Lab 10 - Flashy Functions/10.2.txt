@@ -1,0 +1,37 @@
+flash:
+      MOV R4, #3        ; Number of times to flash rapidly
+flash_loop:
+      MOV R0, #.green   ; Color for "on"
+      BL drawpixel
+      MOV R0, #1        ; Delay for 1 second
+      BL delay
+      MOV R0, #.white   ; Color for "off"
+      BL drawpixel
+      MOV R0, #1        ; Delay for 1 second
+      BL delay
+      SUBS R4, R4, #1
+      BNE flash_loop    ; Repeat the rapid flashing 3 times
+      MOV R0, #2        ; Pause for 2 seconds
+      BL delay
+      B flash           ; Repeat the pattern
+      HALT
+drawpixel:
+      PUSH {LR,R1,R2}
+      MOV R1, R0        ; R1 holds the color
+      MOV R2, R1        ; R2 holds the color for the delay
+      BL delay
+      MOV R0, #0        ; R0 holds the color to turn off
+      BL delay
+      POP {LR,R1,R2}
+      RET
+delay:
+      PUSH {R3,R4,R5}
+      MOV R3, R0        ; R3 holds the number of seconds to delay
+      LDR R4, .Time
+timer:
+      LDR R5, .Time
+      SUB R5, R5, R4
+      CMP R5, R3
+      BLT timer
+      POP {R3,R4,R5}
+      RET
